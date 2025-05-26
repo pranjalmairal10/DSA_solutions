@@ -1,0 +1,13 @@
+def rev(n,s):
+    if n == 0:
+        return s
+        
+    if n%10 == 0:
+        s += 1
+    return rev(n//10,s)
+
+s = 0
+n = 12345905060689
+a = rev(n,s)
+
+print(a)
