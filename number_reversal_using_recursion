@@ -1,0 +1,18 @@
+def rev(n,div,s):
+    if n == 0:
+        return s
+    s += (n%10)*div
+    n = n//10
+    div = div//10
+    return rev(n,div,s)
+
+s = 0
+n = 
+r = n
+count = 0
+while (r!= 0):
+    r = r//10
+    count += 1
+div = 10**(count-1)
+a = rev(n,div,s)
+print(a)
