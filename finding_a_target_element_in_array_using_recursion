@@ -1,0 +1,11 @@
+arr = [3,2,1,18,9]
+
+def check(arr,i,target):
+    if i == len(arr)-1:
+        return False
+    return arr[i] == target or check(arr,i+1,target)
+
+i = 0
+target = 20
+a = check(arr,i,target)
+print(a)
