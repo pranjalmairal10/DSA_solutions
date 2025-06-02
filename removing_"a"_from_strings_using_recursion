@@ -1,0 +1,15 @@
+def removea(s, ans, i):
+    if i >= len(s):
+        return ans
+    
+    if s[i] != "a":
+        ans += s[i]
+    
+    return removea(s, ans, i + 1)
+
+s = "baccad"
+ans = ""
+i = 0
+a = removea(s, ans, i)
+print(s)
+print(a)
