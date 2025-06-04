@@ -1,0 +1,17 @@
+def leave(s,ans,i,pattern):
+    if i >= len(s):
+        return ans
+    
+    if s[i:i+len(pattern)] == pattern:
+        i += len(pattern)-1
+    else:
+        ans += s[i]
+    
+    return leave(s,ans,i+1,pattern)
+
+s = "bcdefghabababuigh"
+pattern = "ab"
+ans = ""
+i = 0
+a = leave(s,ans,i,pattern)
+print(a)
