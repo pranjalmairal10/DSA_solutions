@@ -1,0 +1,15 @@
+def notleave(s,ans,i,pattern):
+    if i >= len(s):
+        return ans
+    
+    if s[i:i+len(pattern)] == pattern:
+        ans += s[i:i+len(pattern)]
+    
+    return notleave(s,ans,i+1,pattern)
+
+s = "bcdapplefg"
+pattern = "apple"
+ans = ""
+i = 0
+a = notleave(s,ans,i,pattern)
+print(a)
