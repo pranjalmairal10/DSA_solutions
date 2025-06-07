@@ -1,0 +1,13 @@
+def subset(s,p,i):
+    
+    if i >= len(s):
+        print(p)
+        return
+    
+    subset(s,p+s[i],i+1)
+    subset(s,p,i+1)
+    
+s = "abc"
+p = ""
+i = 0
+subset(s,p,i)
