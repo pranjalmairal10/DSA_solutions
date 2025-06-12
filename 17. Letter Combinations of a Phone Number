@@ -1,0 +1,73 @@
+hashmap = {2:"abc", 3:"def", 4:"ghi", 5:"jkl", 6:"mno", 7:"pqrs", 8:"tuv", 9:"wxyz"}
+l = []
+for i in range(len(digits)):
+    a = int(digits[i])
+    b = hashmap[a]
+    l.append(b)
+
+if len(l) == 0:
+    return []
+elif len(l) == 1:
+    ans = list(l[0])
+    return ans
+else:
+    def combination(a,r,s,k,ans,n):
+        if len(a) >= n:
+            ans.append(a)
+            a = ""
+            a = r
+        if k > n:
+            return
+        
+        if k == 0:
+            a = r
+        if k < len(s):
+            a = r + s[k]
+        combination(a,r,s,k+1,ans,n)
+    
+    if len(l) == 2:
+        s1 = l[0]
+        s2 = l[1]
+        ans = []
+        for i in range(len(s1)):
+            r = ""
+            r += s1[i]
+            a = ""
+            j = 0
+            combination(a,r,s2,j,ans,2)
+        return ans
+    
+    elif len(l) == 3:
+        ans = []
+        s1 = l[0]
+        s2 = l[1]
+        s3 = l[2]
+        for i in range(len(s1)):
+            for j in range(len(s2)):
+                r = ""
+                r += s1[i]
+                a= ""
+                r += s2[j]
+                k = 0
+                combination(a,r,s3,k,ans,3)
+        
+        return ans
+
+    elif len(l) == 4:
+        ans = []
+        s1 = l[0]
+        s2 = l[1]
+        s3 = l[2]
+        s4 = l[3]
+        for i in range(len(s1)):
+            for j in range(len(s2)):
+                for t in range(len(s3)):
+                    r = ""
+                    r += s1[i]
+                    r += s2[j]
+                    r += s3[t]
+                    a = ""
+                    k = 0
+                    combination(a,r,s4,k,ans,4)
+        
+        return ans
