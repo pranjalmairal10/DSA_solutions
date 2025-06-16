@@ -1,1 +1,51 @@
+def permute(inn,out,l,n,used):
+    if len(out) == n:
+        l.append(out)
+        return
+    
+    for i in range(len(inn)):
+        if inn[i] not in used:
+            used.add(inn[i])
+            new_in = inn[0:i] + inn[i+1:]
+            new_out = out + inn[i]
+            permute(new_in,new_out,l,n,used)
+            used.remove(inn[i])
+    
+
+inn = "abc"
+out = ""
+l = []
+used = set()
+n = len(inn)
+permute(inn,out,l,n,used)
+
+print(l)
+
+
+############################################################################################
+
+
+def permute(idx,l,temp,ans):
+    if idx >= len(l) and "".join(temp) not in ans:
+        ans.append("".join(temp))
+        return
+    
+    
+    for i in range(0,len(temp)):
+        if idx < len(l):
+            a = temp[idx]
+            b = temp[i]
+            temp[i] = a
+            temp[idx] = b
+            permute(idx+1,l,temp,ans)
+            
+ans = []
+l = ["a","a","c"]
+temp = l[:]
+idx = 0
+permute(idx,l,temp,ans)
+
+print(ans)
+
+
 
