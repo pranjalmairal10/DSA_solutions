@@ -1,0 +1,25 @@
+def kswap(l,start,ans,k):
+    if k == 0 or start == len(l)-1:
+        ans.append("".join(l))
+        return
+    
+    ans.append("".join(l))
+    
+    for i in range(start+1,len(l)):
+        if l[start] < l[i]:
+            l[start],l[i] = l[i],l[start]
+            k -= 1
+            kswap(l,start+1,ans,k)
+            k += 1
+            l[start],l[i] = l[i],l[start]
+    
+    kswap(l,start+1,ans,k)
+            
+            
+l = ["9", "8", "3", "6", "8"]
+k = 1
+ans = []
+start = 0
+kswap(l,start,ans,k)
+
+print(ans)
