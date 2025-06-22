@@ -1,0 +1,59 @@
+def solve(i,j,n,temp,ans,maze,flag):
+            if i >= n-1 and j >= n-1:
+                if flag == 1:
+                    temp.append("U")
+                elif flag == 2:
+                    temp.append("D")
+                elif flag == 3:
+                    temp.append("L")
+                elif flag == 4:
+                    temp.append("R")
+                
+                used.add((i,j))
+                
+                if "".join(temp) not in ans:
+                    ans.append("".join(temp))
+                used.remove((i,j))
+                if temp:
+                    temp.pop()
+                return 
+            
+            if (i < 0 or i >= n) or (j < 0 or j >= n):
+                return 
+            
+            if((i,j) not in used) and (maze[i][j] == 1):
+                if flag == 1:
+                    temp.append("U")
+                elif flag == 2:
+                    temp.append("D")
+                elif flag == 3:
+                    temp.append("L")
+                elif flag == 4:
+                    temp.append("R")
+                
+                used.add((i,j))
+            
+            else:
+                return
+            
+            solve(i-1,j,n,temp,ans,maze,1)
+            solve(i+1,j,n,temp,ans,maze,2)
+            solve(i,j-1,n,temp,ans,maze,3)
+            solve(i,j+1,n,temp,ans,maze,4)
+        
+            used.remove((i,j))
+            if temp:
+                temp.pop()
+        
+            
+            
+        flag  = 0
+        temp = []
+        ans = []
+        used = set()
+        n = len(maze)
+        if maze[0][0] == 1:
+            solve(0, 0, n, temp, ans, maze, 0)
+        
+        ans.sort()
+        return ans
