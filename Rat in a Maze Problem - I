@@ -1,3 +1,32 @@
+def solve(x,y,n,maze,temp,ans,choice):
+    if x == n-1 and y == n-1:
+        ans.append("".join(temp))
+        return 
+    
+    for i in range(len(choice)):
+        newx = x + choice[i][1]
+        newy = y + choice[i][2]
+        if newx >= 0 and newx < n and newy >= 0 and newy < n and maze[newx][newy] == 1:
+            maze[x][y] = 0
+            temp.append(choice[i][0])
+            solve(newx,newy,n,maze,temp,ans,choice)
+            maze[x][y] = 1
+            temp.pop()
+    
+maze = [[1, 0, 0, 0], [1, 1, 0, 1], [1, 1, 0, 0], [0, 1, 1, 1]]
+temp = []
+ans = []
+x = 0
+y = 0
+choice = [["U",-1,0], ["D",1,0], ["L",0,-1], ["R",0,1]]
+n = len(maze)
+if maze[x][y] == 1:
+    solve(x,y,n,maze,temp,ans,choice)
+
+print(ans)
+
+
+#########################################################################################################################################
 def solve(i,j,n,temp,ans,maze,flag):
             if i >= n-1 and j >= n-1:
                 if flag == 1:
@@ -40,20 +69,20 @@ def solve(i,j,n,temp,ans,maze,flag):
             solve(i+1,j,n,temp,ans,maze,2)
             solve(i,j-1,n,temp,ans,maze,3)
             solve(i,j+1,n,temp,ans,maze,4)
-        
+            
             used.remove((i,j))
             if temp:
                 temp.pop()
-        
             
             
-        flag  = 0
-        temp = []
-        ans = []
-        used = set()
-        n = len(maze)
-        if maze[0][0] == 1:
+            
+            flag  = 0
+            temp = []
+            ans = []
+            used = set()
+            n = len(maze)
+            if maze[0][0] == 1:
             solve(0, 0, n, temp, ans, maze, 0)
-        
-        ans.sort()
-        return ans
+            
+            ans.sort()
+            return ans
